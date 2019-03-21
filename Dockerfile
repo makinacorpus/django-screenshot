@@ -26,8 +26,7 @@ COPY src /app/src
 RUN chown django:django -R /app
 
 COPY requirements.txt /app/requirements.txt
-COPY package.json /app/package.json
-COPY package.json /app/package-lock.json
+COPY package-lock.json /app/package-lock.json
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 USER django
@@ -35,7 +34,8 @@ USER django
 EXPOSE 8000
 
 WORKDIR /app/src
-RUN npm install
+RUN npm install -g npm
+RUN npm ci
 
 VOLUME /app/screenshots
 
