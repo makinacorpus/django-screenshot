@@ -2,6 +2,7 @@ FROM ubuntu:bionic
 
 ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV LANG C.UTF-8
 
 RUN useradd -ms /bin/bash django
@@ -17,14 +18,12 @@ RUN apt-get -qq update && apt-get install -qq -y \
     python3.7-dev python3.7-distutils && \
     apt-get clean all && rm -rf /var/apt/lists/* && rm -rf /var/cache/apt/*
 
-RUN npm install -g npm
-
 # install pip
 RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-pip.py
 
 COPY requirements.txt /app/requirements.txt
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY package.json /app/src/package.json
+COPY package-lock.json /app/src/package-lock.json
 
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
@@ -38,6 +37,6 @@ EXPOSE 8000
 
 WORKDIR /app/src
 
-RUN npm ci
+RUN npm install
 
 CMD ["gunicorn", "project.wsgi:application", "--bind", "0.0.0.0:8000"]

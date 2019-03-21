@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
   const selector = process.argv[5];
 
   const browser = await puppeteer.launch({
+    executablePath: 'chromium-browser',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -26,7 +27,7 @@ const puppeteer = require('puppeteer');
       await page.waitFor(process.argv[4]);
     }
 
-    const rect = await page.evaluate(() => {
+    const rect = await page.evaluate(selector => {
       const element = document.querySelector(selector);
       const { x, y, width, height } = element.getBoundingClientRect();
       return { left: x, top: y, width, height, id: element.id };
