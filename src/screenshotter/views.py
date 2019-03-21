@@ -17,8 +17,10 @@ class CaptureView(View):
             wait_selectors = request.GET.getlist('wait')
             selector = request.GET.get('selector', 'body')
             width, height = [1920, 1080]
-
-            png = call_puppeteer(url, width=width, height=height, wait_selectors=wait_selectors, selector=selector)
+            headers = {
+                'Authorization': 'Basic amVjOmplY2plYzQ2'
+            }
+            png = call_puppeteer(url, width=width, height=height, wait_selectors=wait_selectors, selector=selector, headers=headers)
             return HttpResponse(png, content_type="image/png", status=200)
 
         except Exception as exc:

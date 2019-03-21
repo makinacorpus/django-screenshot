@@ -26,7 +26,7 @@ SECRET_KEY = 'y+!i*9o!@mlk06m##3xyo1yo@dd9_(3w4+*)1192ev6l_*nk73'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    os.getenv('DOMAIN_NAME'),
+    os.getenv('DOMAIN_NAME', '*'),
 ]
 
 
@@ -62,6 +62,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Password validation
@@ -101,3 +112,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+PUPPETEER_JAVASCRIPT_FILEPATH = os.path.join(BASE_DIR, 'index.js')
