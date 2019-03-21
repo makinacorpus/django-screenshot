@@ -10,6 +10,7 @@ RUN mkdir -p /app
 RUN apt-get -qq update && apt-get install -qq -y \
     build-essential \
     nodejs npm\
+    chromium-browser \
     git wget less nano curl \
     ca-certificates \
     gettext \
