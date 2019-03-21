@@ -1,0 +1,4 @@
+django==2.1.*
+Pillow==5.4.*
+requests==2.21.*
+gunicorn==19.*
