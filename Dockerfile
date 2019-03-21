@@ -9,8 +9,6 @@ RUN mkdir -p /app/screenshots
 RUN apt-get -qq update && apt-get install -qq -y \
     build-essential \
     nodejs npm\
-    chromium-browser \
-    chromium-chromedriver \
     git wget less nano curl \
     ca-certificates \
     gettext \
