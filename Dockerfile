@@ -12,8 +12,6 @@ RUN apt-get -qq update && apt-get install -qq -y \
     git wget less nano curl \
     ca-certificates \
     gettext \
-    libpq-dev \
-    postgresql-client \
     python3.7-dev python3.7-distutils && \
     apt-get clean all && rm -rf /var/apt/lists/* && rm -rf /var/cache/apt/*
 
@@ -38,8 +36,7 @@ EXPOSE 8000
 
 WORKDIR /app/src
 RUN npm install
-COPY src/index.js /app/src/index.js
 
 VOLUME /app/screenshots
 
-CMD ["gunicorn", "screenshotter.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "project.wsgi:application", "--bind", "0.0.0.0:8000"]
