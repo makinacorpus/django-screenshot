@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  let selector = 'body';
+  const selector = process.argv[5];
 
   const browser = await puppeteer.launch({
     args: [
@@ -26,9 +26,7 @@ const puppeteer = require('puppeteer');
       await page.waitFor(process.argv[4]);
     }
 
-    selector = process.argv[5];
-
-    const rect = await page.evaluate(selector => {
+    const rect = await page.evaluate(() => {
       const element = document.querySelector(selector);
       const { x, y, width, height } = element.getBoundingClientRect();
       return { left: x, top: y, width, height, id: element.id };

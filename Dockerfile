@@ -16,24 +16,27 @@ RUN apt-get -qq update && apt-get install -qq -y \
     python3.7-dev python3.7-distutils && \
     apt-get clean all && rm -rf /var/apt/lists/* && rm -rf /var/cache/apt/*
 
+RUN npm install -g npm
+
 # install pip
 RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-pip.py
+
+COPY requirements.txt /app/requirements.txt
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
+
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 COPY src /app/src
 
 RUN chown django:django -R /app
-
-COPY requirements.txt /app/requirements.txt
-COPY package-lock.json /app/package-lock.json
-
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 USER django
 
 EXPOSE 8000
 
 WORKDIR /app/src
-RUN npm install -g npm
+
 RUN npm ci
 
 CMD ["gunicorn", "project.wsgi:application", "--bind", "0.0.0.0:8000"]
