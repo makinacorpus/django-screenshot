@@ -1,6 +1,9 @@
 from . import *  # NOQA
 
 # SECURITY
+ALLOWED_HOSTS = [
+    os.getenv('DOMAIN_NAME'),
+]
 DEBUG = False
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
