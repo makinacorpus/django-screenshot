@@ -11,9 +11,9 @@ const puppeteer = require('puppeteer');
     ],
   });
 
-  try {
-    const page = await browser.newPage();
+  const page = await browser.newPage();
 
+  try {
     const path = process.argv[6];
     const headers = JSON.parse(process.argv[7]);
     const waitSelectors = JSON.parse(process.argv[4]);

@@ -24,5 +24,3 @@ def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selector
 
     with open(screenshot_file.name, 'rb') as screenshot_data:
         return screenshot_data.read()
-
-

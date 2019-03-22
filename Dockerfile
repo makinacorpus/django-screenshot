@@ -24,12 +24,15 @@ RUN apt-get -qq update && apt-get install -qq -y \
 # install pip
 RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-pip.py
 
-COPY requirements.txt /app/requirements.txt
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY requirements.txt /requirements.txt
 
 RUN pip3 install --no-cache-dir gunicorn
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /requirements.txt
+
+COPY package.json /package.json
+COPY package-lock.json /package-lock.json
+RUN npm install -g npm
+RUN npm ci
 
 COPY src /app/src
 
@@ -41,6 +44,5 @@ EXPOSE 8000
 
 WORKDIR /app/src
 
-RUN npm install
 
 CMD ["gunicorn", "project.wsgi:application", "--bind", "0.0.0.0:8000"]
