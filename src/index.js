@@ -16,6 +16,7 @@ const puppeteer = require('puppeteer');
 
     const path = process.argv[6];
     const headers = JSON.parse(process.argv[7]);
+    const waitSelectors = JSON.parse(process.argv[4]);
 
     page.setViewport({ width: 1920, height: 1080 });
 
@@ -23,8 +24,10 @@ const puppeteer = require('puppeteer');
 
     await page.goto(process.argv[3], { waitUntil: 'networkidle0' });
 
-    if (process.argv[4]) {
-      await page.waitFor(process.argv[4]);
+    if (waitSelectors.length > 0) {
+      waitSelectors.each(async wait => {
+        await page.waitFor(wait);
+      });
     }
 
     const rect = await page.evaluate(selector => {

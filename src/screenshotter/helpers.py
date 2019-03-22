@@ -16,7 +16,7 @@ def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selector
             settings.PUPPETEER_JAVASCRIPT_FILEPATH,
             '-u',
             url,
-            selector,
+            json.dumps(wait_selectors),
             selector,
             screenshot_file.name,
             json.dumps(forward_headers)
