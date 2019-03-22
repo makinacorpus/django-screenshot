@@ -11,6 +11,7 @@ RUN mkdir -p /app
 
 RUN apt-get -qq update && apt-get install -qq -y \
     build-essential \
+    libpq-dev \
     nodejs npm \
     # use ubuntu chromium to prevent puppeteer dependencies
     chromium-browser \
