@@ -8,9 +8,12 @@ app_name = 'screenshotter'
 
 schema_view = get_schema_view(
     title='Screenshotter API',
-    description='Common advanced chromium headless based API to get advanced screenshots from dynamic web pages',
+    description='Pupeteer Chromium Headless based API to get advanced screenshots from dynamic web pages',
     url='https://screenshotter.paas.kasta.ovh',
-    renderer_classes=[JSONOpenAPIRenderer, BrowsableAPIRenderer],
+    renderer_classes=[
+        JSONOpenAPIRenderer,
+        BrowsableAPIRenderer
+    ],
     public=False,
 
 )

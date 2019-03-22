@@ -19,7 +19,9 @@ def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selector
             json.dumps(wait_selectors),
             selector,
             screenshot_file.name,
-            json.dumps(forward_headers)
+            json.dumps(forward_headers),
+            f'{viewport_width}',
+            f'{viewport_height}',
         ])
 
     with open(screenshot_file.name, 'rb') as screenshot_data:
