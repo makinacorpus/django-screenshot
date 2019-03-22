@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dokku": {
-      "postdeploy": "/app/src/manage.py collectstatic --noinput --clear"
+      "postdeploy": "/app/src/manage.py collectstatic --noinput --clear && /app/src/manage.py migrate --noinput"
     }
   }
 }

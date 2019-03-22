@@ -1,5 +1,13 @@
 version: '3'
 services:
+  db:
+    image: postgres:11-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=screenshot
+      - POSTGRES_USER=screenshot
+      - POSTGRES_PASSWORD=screenshot
   web:
     build:
       context: .
@@ -8,5 +16,15 @@ services:
     volumes:
       - ./src/:/app/src/
     command: ./manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
     ports:
       - 8000:8000
+    environment:
+      - POSTGRES_DB=screenshot
+      - POSTGRES_USER=screenshot
+      - POSTGRES_PASSWORD=screenshot
+      - POSTGRES_HOST=db
+
+volumes:
+  postgres:
