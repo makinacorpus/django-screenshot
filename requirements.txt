@@ -6,13 +6,20 @@
 #
 --no-binary psycopg2
 
-certifi==2019.3.9         # via minio
+certifi==2019.3.9         # via minio, requests
+chardet==3.0.4            # via requests
+coreapi==2.3.3
+coreschema==0.0.4         # via coreapi
 coverage==4.5.3
 django-minio-storage==0.2.2
 django==2.1.7
 djangorestframework==3.9.2
 entrypoints==0.3          # via flake8
 flake8==3.7.7
+idna==2.8                 # via requests
+itypes==1.1.0             # via coreapi
+jinja2==2.10              # via coreschema
+markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via flake8
 minio==4.0.12             # via django-minio-storage
 psycopg2==2.7.7
@@ -20,5 +27,7 @@ pycodestyle==2.5.0        # via flake8
 pyflakes==2.1.1           # via flake8
 python-dateutil==2.8.0    # via minio
 pytz==2018.9              # via django, minio
+requests==2.21.0          # via coreapi
 six==1.12.0               # via python-dateutil
-urllib3==1.24.1           # via minio
+uritemplate==3.0.0        # via coreapi
+urllib3==1.24.1           # via minio, requests
