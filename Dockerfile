@@ -2,15 +2,17 @@ FROM ubuntu:bionic
 
 ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 ENV LANG C.UTF-8
+# use ubuntu chromium to prevent puppeteer dependencies
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 RUN useradd -ms /bin/bash django
 RUN mkdir -p /app
 
 RUN apt-get -qq update && apt-get install -qq -y \
     build-essential \
-    nodejs npm\
+    nodejs npm \
+    # use ubuntu chromium to prevent puppeteer dependencies
     chromium-browser \
     git wget less nano curl \
     ca-certificates \
@@ -22,8 +24,8 @@ RUN apt-get -qq update && apt-get install -qq -y \
 RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-pip.py
 
 COPY requirements.txt /app/requirements.txt
-COPY package.json /app/src/package.json
-COPY package-lock.json /app/src/package-lock.json
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
 
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
 

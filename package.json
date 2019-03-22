@@ -9,9 +9,11 @@
   "author": "JEC",
   "license": "ISC",
   "dependencies": {
+    "puppeteer": "^1.13.0"
+  },
+  "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
-    "eslint-config-makina": "^0.9.0",
-    "puppeteer": "^1.13.0"
+    "eslint-config-makina": "^0.9.0"
   }
 }
