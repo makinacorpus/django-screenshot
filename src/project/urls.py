@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from screenshotter.views import CaptureAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', CaptureAPIView.as_view(), name="capture"),
+    path('api/', include('screenshotter.urls', namespace='screenshotter')),
 ]
