@@ -17,13 +17,13 @@ class CaptureAPIView(APIView):
         return self.serializer_class()
 
     def post(self, request, *args, **kwargs):
-        self.serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data)
 
-        if self.serializer.is_valid():
-            png = call_puppeteer(**self.serializer.validated_data)
+        if serializer.is_valid():
+            png = call_puppeteer(**serializer.validated_data)
             response = {'base64': b64encode(png)}
 
         else:
-            response = {'errors': self.serializer.errors}
+            response = {'errors': serializer.errors}
 
         return Response(response)
