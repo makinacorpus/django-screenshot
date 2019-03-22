@@ -5,7 +5,9 @@ from tempfile import NamedTemporaryFile
 from django.conf import settings
 
 
-def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selectors=(), selector='body', forward_headers={}):
+def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selectors=(), selector='body', forward_headers=None):
+    if forward_headers is None:
+        forward_headers = dict()
     screenshot_file = NamedTemporaryFile(suffix='.png')
 
     with open(screenshot_file.name, 'w+b'):
