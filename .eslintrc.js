@@ -6,17 +6,9 @@ module.exports = {
   extends: 'makina',
   parser: 'babel-eslint',
   parserOptions: {
-    sourceType: 'script',
+    sourceType: 'module',
   },
   globals: {
-    jQuery: true,
-    L: true,
-    _: true,
-    Backbone: true,
-    app: true,
-    browser: true,
-    before: true,
-    after: true,
   },
   rules: {
     'func-names':           [off],
