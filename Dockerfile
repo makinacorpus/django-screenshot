@@ -27,8 +27,8 @@ COPY requirements.txt /app/requirements.txt
 COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
 RUN pip3 install --no-cache-dir gunicorn
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
 
 COPY src /app/src
 
