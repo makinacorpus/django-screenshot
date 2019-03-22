@@ -21,7 +21,7 @@ const puppeteer = require('puppeteer');
 
     page.setExtraHTTPHeaders(headers);
 
-    await page.goto(process.argv[3]);
+    await page.goto(process.argv[3], { waitUntil: 'networkidle0' });
 
     if (process.argv[4]) {
       await page.waitFor(process.argv[4]);

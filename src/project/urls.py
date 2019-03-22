@@ -1,12 +1,8 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 
-from screenshotter.views import CaptureView
+from screenshotter.views import CaptureView, CaptureAPIView
 
 urlpatterns = [
     path('', CaptureView.as_view(), name='capture'),
+    path('capture/', CaptureAPIView.as_view()),
 ]
-
-#if settings.DEBUG:
-#    urlpatterns.append(static(settings.MEDIA_URL, document_root=settings.MEDIA_URL_ROOT))

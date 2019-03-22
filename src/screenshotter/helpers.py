@@ -5,7 +5,7 @@ from tempfile import NamedTemporaryFile
 from django.conf import settings
 
 
-def call_puppeteer(url, width=1920, height=1080, wait_selectors=(), selector='body', headers={}):
+def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selectors=(), selector='body', forward_headers={}):
     screenshot_file = NamedTemporaryFile(suffix='.png')
 
     with open(screenshot_file.name, 'w+b'):
@@ -17,11 +17,10 @@ def call_puppeteer(url, width=1920, height=1080, wait_selectors=(), selector='bo
             selector,
             selector,
             screenshot_file.name,
-            json.dumps(headers)
+            json.dumps(forward_headers)
         ])
 
     with open(screenshot_file.name, 'rb') as screenshot_data:
         return screenshot_data.read()
-
 
 

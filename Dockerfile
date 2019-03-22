@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
 # use ubuntu chromium to prevent puppeteer dependencies
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-
+ARG NODE_ENV=production
 RUN useradd -ms /bin/bash django
 RUN mkdir -p /app
 
@@ -28,6 +28,7 @@ COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
+RUN pip3 install --no-cache-dir gunicorn
 
 COPY src /app/src
 
