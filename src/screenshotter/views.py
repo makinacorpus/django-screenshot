@@ -1,6 +1,7 @@
 from base64 import b64encode
 
 from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 
 from screenshotter.helpers import call_puppeteer
@@ -23,10 +24,13 @@ class CaptureAPIView(APIView):
             try:
                 png = call_puppeteer(**serializer.validated_data)
                 response = {'base64': b64encode(png)}
+                status = HTTP_200_OK
             except Exception as exc:
                 response = {'errors': f'{exc}'}
+                status = HTTP_500_INTERNAL_SERVER_ERROR
 
         else:
             response = {'errors': serializer.errors}
+            status = HTTP_400_BAD_REQUEST
 
-        return Response(response)
+        return Response(response, status=status)
