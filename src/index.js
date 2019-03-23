@@ -16,11 +16,11 @@ const puppeteer = require('puppeteer');
   try {
     const path = process.argv[6];
     const headers = JSON.parse(process.argv[7]);
-    const viewport_width = process.argv[8];
-    const viewport_height = process.argv[9];
+    const viewportWidth = parseInt(process.argv[8], 10);
+    const viewportHeight = parseInt(process.argv[9], 10);
     const waitSelectors = JSON.parse(process.argv[4]);
 
-    page.setViewport({ width: viewport_width, height: viewport_height });
+    page.setViewport({ width: viewportWidth, height: viewportHeight });
 
     page.setExtraHTTPHeaders(headers);
 
@@ -48,7 +48,7 @@ const puppeteer = require('puppeteer');
       },
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
   } finally {
     await browser.close();
   }

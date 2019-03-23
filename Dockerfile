@@ -21,7 +21,7 @@ RUN apt-get -qq update && apt-get install -qq -y \
     python3.7-dev python3.7-distutils && \
     apt-get clean all && rm -rf /var/apt/lists/* && rm -rf /var/cache/apt/*
 
-# install pip
+# install pip & requirements
 RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-pip.py
 
 COPY requirements.txt /requirements.txt
@@ -29,6 +29,7 @@ COPY requirements.txt /requirements.txt
 RUN pip3 install --no-cache-dir gunicorn
 RUN pip3 install --no-cache-dir -r /requirements.txt
 
+# upgrade npm & requirements
 COPY package.json /package.json
 COPY package-lock.json /package-lock.json
 RUN npm install -g npm

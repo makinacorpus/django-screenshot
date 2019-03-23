@@ -6,5 +6,6 @@ class ScreenshotSerializer(serializers.Serializer):
     viewport_width = serializers.IntegerField(required=False, initial=1920)
     viewport_height = serializers.IntegerField(required=False, initial=1080)
     selector = serializers.CharField(initial='body', required=False)
-    wait_selectors = serializers.ListField(child=serializers.CharField(allow_blank=False), required=False, initial=[])
+    wait_selectors = serializers.ListField(child=serializers.CharField(allow_blank=False),
+                                           required=False, initial=[])
     forward_headers = serializers.JSONField(required=False, initial={})

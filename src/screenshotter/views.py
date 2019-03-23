@@ -20,8 +20,11 @@ class CaptureAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
-            png = call_puppeteer(**serializer.validated_data)
-            response = {'base64': b64encode(png)}
+            try:
+                png = call_puppeteer(**serializer.validated_data)
+                response = {'base64': b64encode(png)}
+            except Exception as exc:
+                response = {'errors': f'{exc}'}
 
         else:
             response = {'errors': serializer.errors}
