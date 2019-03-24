@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
-const minimist = require('minimist');
+const parseArgs = require('minimist');
 
-const args = minimist(process.argv);
+const args = parseArgs(process.argv);
 const { url, path, selector, waitseconds } = args;
 const headers = JSON.parse(args.headers);
 const viewportWidth = parseInt(args.vwidth, 10);
@@ -14,6 +14,8 @@ const waitSelectors = JSON.parse(args.waitselectors);
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
+      // https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#tips
+      '--disable-dev-shm-usage',
     ],
   });
 

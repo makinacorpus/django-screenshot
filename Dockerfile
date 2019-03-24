@@ -36,6 +36,7 @@ RUN npm install -g npm
 RUN npm ci
 
 COPY src /app/src
+COPY app.json /app/src/app.json
 
 RUN chown django:django -R /app
 
