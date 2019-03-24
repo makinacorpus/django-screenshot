@@ -25,6 +25,7 @@ services:
       - POSTGRES_USER=screenshot
       - POSTGRES_PASSWORD=screenshot
       - POSTGRES_HOST=db
+      - DJANGO_SETTINGS_MODULE=project.settings.dev
 
 volumes:
   postgres:

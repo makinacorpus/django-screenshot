@@ -1,8 +1,14 @@
 const puppeteer = require('puppeteer');
+const minimist = require('minimist');
+
+const args = minimist(process.argv);
+const { url, path, selector, waitseconds } = args;
+const headers = JSON.parse(args.headers);
+const viewportWidth = parseInt(args.vwidth, 10);
+const viewportHeight = parseInt(args.vheight, 10);
+const waitSelectors = JSON.parse(args.waitselectors);
 
 (async () => {
-  const selector = process.argv[5];
-
   const browser = await puppeteer.launch({
     executablePath: 'chromium-browser',
     args: [
@@ -14,24 +20,21 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
 
   try {
-    const path = process.argv[6];
-    const headers = JSON.parse(process.argv[7]);
-    const viewportWidth = parseInt(process.argv[8], 10);
-    const viewportHeight = parseInt(process.argv[9], 10);
-    const waitSelectors = JSON.parse(process.argv[4]);
-
-    page.setViewport({ width: viewportWidth, height: viewportHeight });
+    page.setViewport({
+      width: viewportWidth,
+      height: viewportHeight,
+    });
 
     page.setExtraHTTPHeaders(headers);
 
-    await page.goto(process.argv[3], { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil: 'networkidle0' });
 
     if (waitSelectors.length > 0) {
-      waitSelectors.each(async wait => {
-        await page.waitFor(wait);
+      waitSelectors.forEach(async wait => {
+        await page.waitForSelector(wait);
       });
     }
-
+    await page.waitFor(waitseconds);
     const rect = await page.evaluate(selector => {
       const element = document.querySelector(selector);
       const { x, y, width, height } = element.getBoundingClientRect();
@@ -50,6 +53,7 @@ const puppeteer = require('puppeteer');
   } catch (e) {
     console.error(e);
   } finally {
+    await page.close();
     await browser.close();
   }
 })();

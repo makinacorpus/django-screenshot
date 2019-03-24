@@ -13,12 +13,12 @@ RUN apt-get -qq update && apt-get install -qq -y \
     build-essential \
     libpq-dev \
     nodejs npm \
-    # use ubuntu chromium to prevent puppeteer dependencies
-    chromium-browser \
     git wget less nano curl \
     ca-certificates \
     gettext \
-    python3.7-dev python3.7-distutils && \
+    python3.7-dev python3.7-distutils -- && \
+    # use ubuntu chromium to prevent puppeteer dependencies
+    apt-get --no-install-recommends install chromium-browser -y && \
     apt-get clean all && rm -rf /var/apt/lists/* && rm -rf /var/cache/apt/*
 
 # install pip & requirements
