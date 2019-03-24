@@ -21,8 +21,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('rest_framework.urls')),
+    path('schema/', schema_view, name='schema'),
     path('', include('screenshotter.urls')),
-path('', schema_view, name='schema'),
 ]
 
 if settings.DEBUG and os.getenv('DJANGO_SETTINGS_MODULE') == 'project.settings.dev':
