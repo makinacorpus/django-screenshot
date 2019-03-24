@@ -3,11 +3,26 @@ import os
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.renderers import JSONOpenAPIRenderer, BrowsableAPIRenderer
+from rest_framework.schemas import get_schema_view
+
+schema_view = get_schema_view(
+    title='Screenshotter API',
+    description='Pupeteer Chromium Headless based API to get advanced screenshots from dynamic web pages',
+    url='https://screenshotter.paas.kasta.ovh',
+    renderer_classes=[
+        JSONOpenAPIRenderer,
+        BrowsableAPIRenderer
+    ],
+    public=False,
+
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('rest_framework.urls')),
-    path('api/', include('screenshotter.urls')),
+    path('auth/', include('rest_framework.urls')),
+    path('', include('screenshotter.urls')),
+path('', schema_view, name='schema'),
 ]
 
 if settings.DEBUG and os.getenv('DJANGO_SETTINGS_MODULE') == 'project.settings.dev':

@@ -126,6 +126,6 @@ REST_FRAMEWORK = {
     )
 }
 
-LOGIN_REDIRECT_URL = '/api/'
+LOGIN_REDIRECT_URL = '/'
 
-LOGIN_URL = '/api/auth/login/'
+LOGIN_URL = '/auth/login/'
