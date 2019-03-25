@@ -23,14 +23,12 @@ class CaptureTestCase(TestCase):
     @override_settings(MEDIA_ROOT=temp_dir.name)
     def test_capture_mime(self):
         png = call_puppeteer('https://www.google.fr')
-
         png_path = os.path.join(temp_dir.name, 'test.png')
+
         cfile = ContentFile(content=png)
         default_storage.save(name=png_path, content=cfile)
 
-
         self.assertTrue(os.path.exists(png_path))
-
         self.assertNotEqual(os.path.getsize(png_path), 0)
 
         mime = magic.from_file(png_path, mime=True)
@@ -58,6 +56,17 @@ class CaptureTestCase(TestCase):
 
         self.assertTrue(hasattr(view, 'get_serializer'))
         self.assertTrue(isinstance(view.get_serializer(), Serializer))
+
+    @override_settings(SCREENSHOTTER={'PUPPETEER_JAVASCRIPT_FILEPATH': 'none'})
+    def test_bad_script_path(self):
+        with self.assertRaises(ScreenshotterException):
+            call_puppeteer('https://www.google.fr')
+
+    @override_settings(SCREENSHOTTER={'BAD_SETTINGS': 'none'})
+    def test_bad_settings(self):
+        with self.assertRaises(AttributeError):
+            from .settings import app_settings
+            bool(app_settings.BAD_SETTINGS)
 
 
 class CaptureApiTestCase(TestCase):
