@@ -8,7 +8,7 @@ from screenshotter.helpers import call_puppeteer
 from screenshotter.serializer import ScreenshotSerializer
 
 
-class CaptureAPIView(APIView):
+class ScreenshotAPIView(APIView):
     serializer_class = ScreenshotSerializer
 
     def get_serializer(self, *args, **kwargs):
@@ -17,20 +17,20 @@ class CaptureAPIView(APIView):
         """
         return self.serializer_class()
 
+    def serializer_invalid(self, serializer):
+        return Response(serializer.errors, status=http_status.HTTP_400_BAD_REQUEST)
+
+    def serializer_valid(self, serializer):
+        try:
+            png = call_puppeteer(**serializer.validated_data)
+            response = {'base64': b64encode(png)}
+            status = http_status.HTTP_200_OK
+        except Exception as exc:
+            response = {'errors': f'{exc}'}
+            status = http_status.HTTP_500_INTERNAL_SERVER_ERROR
+        return Response(response, status=status)
+
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid():
-            try:
-                png = call_puppeteer(**serializer.validated_data)
-                response = {'base64': b64encode(png)}
-                status = http_status.HTTP_200_OK
-            except Exception as exc:
-                response = {'errors': f'{exc}'}
-                status = http_status.HTTP_500_INTERNAL_SERVER_ERROR
-
-        else:
-            response = {'errors': serializer.errors}
-            status = http_status.HTTP_400_BAD_REQUEST
-
-        return Response(response, status=status)
+        return self.serializer_valid(serializer) \
+            if serializer.is_valid() else self.serializer_invalid(serializer)

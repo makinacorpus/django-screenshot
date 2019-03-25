@@ -5,5 +5,5 @@ from . import views
 app_name = 'screenshotter'
 
 urlpatterns = [
-    path('', views.CaptureAPIView.as_view(), name="capture"),
+    path('', views.ScreenshotAPIView.as_view(), name="screenshot"),
 ]

@@ -3,6 +3,7 @@ import subprocess
 from tempfile import NamedTemporaryFile
 
 from django.conf import settings
+from .exceptions import ScreenshotterException
 
 
 def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selectors=(),
@@ -34,7 +35,7 @@ def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selector
         ], capture_output=True)
 
         if command.stderr:
-            raise Exception(command.stderr.decode())
+            raise ScreenshotterException(command.stderr.decode())
 
     with open(screenshot_file.name, 'rb') as screenshot_data:
         return screenshot_data.read()
