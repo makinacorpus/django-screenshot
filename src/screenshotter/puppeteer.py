@@ -2,12 +2,12 @@ import json
 import subprocess
 from tempfile import NamedTemporaryFile
 
-from .exceptions import ScreenshotterException
-from .settings import app_settings
+from screenshotter.exceptions import ScreenshotterException
+from screenshotter.settings import app_settings
 
 
-def call_puppeteer(url, viewport_width=1920, viewport_height=1080, wait_selectors=(),
-                   selector='body', wait_seconds=1, forward_headers=None):
+def take_screenshot(url, viewport_width=1920, viewport_height=1080, wait_selectors=(),
+                    selector='body', wait_seconds=1, forward_headers=None):
     if forward_headers is None:
         forward_headers = dict()
 

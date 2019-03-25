@@ -12,7 +12,7 @@ from rest_framework.serializers import Serializer
 from rest_framework.test import APIClient
 
 from .exceptions import ScreenshotterException
-from .helpers import call_puppeteer
+from screenshotter.puppeteer import take_screenshot
 from .serializer import ScreenshotSerializer
 from .views import ScreenshotAPIView
 
@@ -22,7 +22,7 @@ temp_dir = TemporaryDirectory()
 class CaptureTestCase(TestCase):
     @override_settings(MEDIA_ROOT=temp_dir.name)
     def test_capture_mime(self):
-        png = call_puppeteer('https://www.google.fr')
+        png = take_screenshot('https://www.google.fr')
         png_path = os.path.join(temp_dir.name, 'test.png')
 
         cfile = ContentFile(content=png)
@@ -36,7 +36,7 @@ class CaptureTestCase(TestCase):
 
     @override_settings(MEDIA_ROOT=temp_dir.name)
     def test_capture_size(self):
-        png = call_puppeteer('https://www.google.fr', viewport_width=1280, viewport_height=720)
+        png = take_screenshot('https://www.google.fr', viewport_width=1280, viewport_height=720)
 
         png_path = os.path.join(temp_dir.name, 'test2.png')
         cfile = ContentFile(content=png)
@@ -49,7 +49,7 @@ class CaptureTestCase(TestCase):
 
     def test_bad_dns(self):
         with self.assertRaises(ScreenshotterException):
-            call_puppeteer('https://cccccc')
+            take_screenshot('https://cccccc')
 
     def test_view_has_get_serializer(self):
         view = ScreenshotAPIView()
@@ -60,7 +60,7 @@ class CaptureTestCase(TestCase):
     @override_settings(SCREENSHOTTER={'PUPPETEER_JAVASCRIPT_FILEPATH': 'none'})
     def test_bad_script_path(self):
         with self.assertRaises(ScreenshotterException):
-            call_puppeteer('https://www.google.fr')
+            take_screenshot('https://www.google.fr')
 
     @override_settings(SCREENSHOTTER={'BAD_SETTINGS': 'none'})
     def test_bad_settings(self):

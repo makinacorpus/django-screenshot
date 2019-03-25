@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status as http_status
 from rest_framework.views import APIView
 
-from screenshotter.helpers import call_puppeteer
+from screenshotter.puppeteer import take_screenshot
 from screenshotter.serializer import ScreenshotSerializer
 
 
@@ -22,7 +22,7 @@ class ScreenshotAPIView(APIView):
 
     def serializer_valid(self, serializer):
         try:
-            png = call_puppeteer(**serializer.validated_data)
+            png = take_screenshot(**serializer.validated_data)
             response = {'base64': b64encode(png)}
             status = http_status.HTTP_200_OK
         except Exception as exc:
