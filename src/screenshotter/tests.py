@@ -12,7 +12,7 @@ from rest_framework.serializers import Serializer
 from rest_framework.test import APIClient
 
 from .exceptions import ScreenshotterException
-from screenshotter.puppeteer import take_screenshot
+from .puppeteer import take_screenshot
 from .serializer import ScreenshotSerializer
 from .views import ScreenshotAPIView
 

@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status as http_status
 from rest_framework.views import APIView
 
-from screenshotter.puppeteer import take_screenshot
-from screenshotter.serializer import ScreenshotSerializer
+from .puppeteer import take_screenshot
+from .serializer import ScreenshotSerializer
 
 
 class ScreenshotAPIView(APIView):

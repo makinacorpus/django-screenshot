@@ -2,8 +2,8 @@ import json
 import subprocess
 from tempfile import NamedTemporaryFile
 
-from screenshotter.exceptions import ScreenshotterException
-from screenshotter.settings import app_settings
+from .exceptions import ScreenshotterException
+from .settings import app_settings
 
 
 def take_screenshot(url, viewport_width=1920, viewport_height=1080, wait_selectors=(),
