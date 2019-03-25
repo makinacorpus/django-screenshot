@@ -1,11 +1,16 @@
 django==2.1.*
-Pillow==5.4.*
 djangorestframework==3.9.*
 coreapi==2.3.*
-django-minio-storage==0.2.*
-psycopg2>=2.7,<2.8 --no-binary psycopg2
-# dev
-python-magic==0.4.*
-django-debug-toolbar==1.11.*
+
+# dev & tests
 coverage
 flake8
+Pillow==5.4.*
+python-magic==0.4.*
+
+# project
+django-minio-storage==0.2.*
+psycopg2>=2.7,<2.8 --no-binary psycopg2
+
+# dev project
+django-debug-toolbar==1.11.*
