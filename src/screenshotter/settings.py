@@ -1,15 +1,3 @@
-"""
-Settings for SCREENSHOTTER are all namespaced in the SCREENSHOTTER setting.
-For example your project's `settings.py` file might look like this:
-SCREENSHOTTER = {
-}
-This module provides the `app_setting` object, that is used to access
-SCREENSHOTTER settings, checking for user settings first, then falling
-back to the defaults.
-"""
-from __future__ import unicode_literals
-
-
 from django.conf import settings
 from django.test.signals import setting_changed
 
