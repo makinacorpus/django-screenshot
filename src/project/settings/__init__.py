@@ -110,8 +110,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-PUPPETEER_JAVASCRIPT_FILEPATH = os.path.join(BASE_DIR, 'index.js')
-
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

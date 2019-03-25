@@ -2,7 +2,7 @@
   "name": "screenshotter",
   "version": "1.0.0",
   "description": "screenshot tools",
-  "main": "src/index.js",
+  "main": "src/screenshotter/js/index.js",
   "scripts": {
     "test": "test"
   },

@@ -1,9 +1,12 @@
+import os
+
 from django.conf import settings
 from django.test.signals import setting_changed
 
 
 DEFAULTS = {
-    'PUPPETEER_JAVASCRIPT_FILEPATH': '/app/src/index.js',
+    'PUPPETEER_JAVASCRIPT_FILEPATH': os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                                  'js', 'index.js'),
     'CHROMIUM_BROWSER_FILEPATH': 'chromium-browser'
 }
 
