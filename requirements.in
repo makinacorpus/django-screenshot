@@ -1,16 +1,16 @@
-django==2.1.*
-djangorestframework==3.9.*
+django==2.2.*
+djangorestframework==3.11.*
 coreapi==2.3.*
 
 # dev & tests
 coverage
 flake8
-Pillow==5.4.*
-python-magic==0.4.*
+Pillow==7.*
+python-magic
 
 # project
-django-minio-storage==0.2.*
-psycopg2>=2.7,<2.8 --no-binary psycopg2
+django-minio-storage
+psycopg2
 
 # dev project
-django-debug-toolbar==1.11.*
+django-debug-toolbar
