@@ -15,6 +15,9 @@ django-minio-storage==0.3.7  # via -r requirements.in
 django==2.2.12            # via -r requirements.in, django-debug-toolbar, django-minio-storage, djangorestframework
 djangorestframework==3.11.0  # via -r requirements.in
 flake8==3.8.1             # via -r requirements.in
+gevent==20.5.0            # via gunicorn
+greenlet==0.4.15          # via gevent
+gunicorn[gevent]==20.0.4  # via -r requirements.in
 idna==2.9                 # via requests
 itypes==1.2.0             # via coreapi
 jinja2==2.11.2            # via coreschema
@@ -33,3 +36,6 @@ six==1.14.0               # via python-dateutil
 sqlparse==0.3.1           # via django, django-debug-toolbar
 uritemplate==3.0.1        # via coreapi
 urllib3==1.25.9           # via minio, requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

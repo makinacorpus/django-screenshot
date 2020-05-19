@@ -26,8 +26,8 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && python3.7 get-pip.py && rm get-
 
 COPY requirements.txt /requirements.txt
 
-RUN pip3 install --no-cache-dir gunicorn
-RUN pip3 install --no-cache-dir -r /requirements.txt
+RUN pip3 install --no-cache-dir pip setuptools wheel -U
+RUN pip3 install --no-cache-dir -r /requirements.txt -U
 
 # upgrade npm & requirements
 COPY package.json /package.json
