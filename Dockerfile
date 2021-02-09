@@ -3,7 +3,6 @@ FROM ubuntu:focal
 ENV PYTHONUNBUFFERED 1
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
-# use ubuntu chromium to prevent puppeteer dependencies
 ARG NODE_ENV=production
 RUN useradd -ms /bin/bash django
 RUN mkdir -p /app
