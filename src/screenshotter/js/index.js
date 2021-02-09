@@ -10,7 +10,6 @@ const waitSelectors = JSON.parse(args.waitselectors);
 
 (async () => {
   const browser = await puppeteer.launch({
-    executablePath: 'chromium-browser',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -36,7 +35,7 @@ const waitSelectors = JSON.parse(args.waitselectors);
         await page.waitForSelector(wait);
       });
     }
-    await page.waitFor(waitseconds);
+    await page.waitForTimeout(waitseconds);
     const rect = await page.evaluate(selector => {
       const element = document.querySelector(selector);
       const { x, y, width, height } = element.getBoundingClientRect();

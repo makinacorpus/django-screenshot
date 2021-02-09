@@ -1,4 +1,4 @@
-django==2.2.*
+django
 djangorestframework
 coreapi
 
@@ -9,7 +9,7 @@ psycopg2
 # dev & tests
 coverage
 flake8
-Pillow==7.*
+Pillow
 python-magic
 
 # dev project
