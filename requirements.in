@@ -2,10 +2,6 @@ django
 djangorestframework
 coreapi
 
-# project
-django-minio-storage
-psycopg2
-
 # dev & tests
 coverage
 flake8

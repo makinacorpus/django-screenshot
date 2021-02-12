@@ -48,7 +48,6 @@ RUN apt-get -qq update && apt-get install -qq -y \
     lsb-release \
     xdg-utils \
     build-essential \
-    libpq-dev \
     nodejs npm \
     git wget less nano curl \
     ca-certificates \

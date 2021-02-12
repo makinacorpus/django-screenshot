@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework.renderers import JSONOpenAPIRenderer, BrowsableAPIRenderer
 from rest_framework.schemas import get_schema_view
@@ -19,8 +18,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('rest_framework.urls')),
     path('schema/', schema_view, name='schema'),
     path('', include('screenshotter.urls')),
 ]
