@@ -36,3 +36,8 @@ class ScreenshotAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         return self.serializer_valid(serializer) \
             if serializer.is_valid() else self.serializer_invalid(serializer)
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.GET)
+        return self.serializer_valid(serializer) \
+            if serializer.is_valid() else self.serializer_invalid(serializer)
