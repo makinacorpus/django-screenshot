@@ -1,5 +1,4 @@
 import base64
-from base64 import b64encode
 
 from rest_framework import renderers
 from rest_framework.utils.serializer_helpers import ReturnDict
