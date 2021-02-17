@@ -9,28 +9,28 @@ certifi==2020.12.5
 chardet==4.0.0
     # via requests
 coreapi==2.3.3
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 coreschema==0.0.4
     # via coreapi
 coverage==5.4
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 django-debug-toolbar==3.2
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 django==2.2.18
     # via
-    #   -r requirements.in
     #   django-debug-toolbar
+    #   django-screenshot (setup.py)
     #   djangorestframework
 djangorestframework==3.12.2
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 flake8==3.8.4
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 gevent==21.1.2
     # via gunicorn
 greenlet==1.0.0
     # via gevent
 gunicorn[gevent]==20.0.4
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 idna==2.10
     # via requests
 itypes==1.2.0
@@ -42,13 +42,13 @@ markupsafe==1.1.1
 mccabe==0.6.1
     # via flake8
 pillow==7.2.0
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 pycodestyle==2.6.0
     # via flake8
 pyflakes==2.2.0
     # via flake8
 python-magic==0.4.18
-    # via -r requirements.in
+    # via django-screenshot (setup.py)
 pytz==2021.1
     # via django
 requests==2.25.1
@@ -61,6 +61,8 @@ uritemplate==3.0.1
     # via coreapi
 urllib3==1.26.3
     # via requests
+whitenoise==5.2.0
+    # via django-screenshot (setup.py)
 zope.event==4.5.0
     # via gevent
 zope.interface==5.2.0

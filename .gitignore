@@ -33,3 +33,9 @@ docs/_build/
 !/public/media/industry-pictos/
 /public/static/
 !/public/static/.gitkeep
+/debian/.debhelper/
+/debian/debhelper-build-stamp
+/debian/django-screenshot/
+/debian/django-screenshot.substvars
+/debian/django-screenshot.*.debhelper
+/debian/files
